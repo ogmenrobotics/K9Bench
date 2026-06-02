@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="K9-Bench: Evaluating Multimodal LLMs on Canine-Centric Videos.">
+  <meta name="keywords" content="VLM, Video Understanding, Dogs, Animal, Benchmark, Multimodal">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>K9-Bench: Evaluating Multimodal LLMs on Canine-Centric Videos</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/media/logo.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">K9-Bench: Evaluating Multimodal LLMs on Canine-Centric Videos</h1>
+          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="#" target="_blank">Khush Attarde</a><sup>*</sup><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://yusufali98.github.io/" target="_blank">Yusuf Ali</a><sup>*</sup><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://meghathukral.github.io/" target="_blank">Megha Thukral</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="#" target="_blank">Divye Bhutani</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://thomasploetz.de/" target="_blank">Thomas Ploetz</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://faculty.cc.gatech.edu/~zk15/" target="_blank">Zsolt Kira</a><sup>2</sup>
+            </span>
+          </div>
+          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Ogmen Robotics,</span>
+            <span class="author-block"><sup>2</sup>Georgia Institute of Technology</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2506.15635" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/k9bench/k9bench" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Eval Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/ogmen/K9Bench" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="far fa-images"></i></span>
+                  <span>Data</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+    <!-- Paper image. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="publication-image">
+          <img src="./static/media/teaser.png"
+               alt="K9-Bench Overview Figure"
+               style="width: 80%; height: auto;">
+        </div>
+      </div>
+    </div>
+
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+<p>
+            Multimodal Large Language Models (MLLMs) have demonstrated remarkable zero-shot capabilities across diverse inputs such as images, video, audio, and text. A crucial, yet underexplored, application of these models lies in understanding and modeling animal-centric scenarios, especially domesticated animals. As animals are integral to millions of households, benchmarking next-generation AI models on pet-focused tasks, ranging from recognizing distress signals in pets to enabling responsive robotic companions, is essential for building AI systems that can live and work alongside us. We introduce <b>K9-Bench</b>, a novel benchmark focused on real-world videos of domestic dogs, specifically targeting canine action and interaction understanding via ≈5000 question-answer pairs across 907 videos spanning 5 distinct task categories that test long-form, canine-centric multimodal reasoning in MLLMs. To create this dataset, we propose a scalable, VLM/LLM-powered data generation pipeline that automatically mines canine-centric videos from open web sources and curates QA pairs requiring fine-grained, multi-hop reasoning over canine actions and temporally extended interaction sequences. We further propose bias mitigation strategies designed to eliminate biases introduced by VLMs during dataset curation. Through extensive experimentation, we find that frontier MLLMs exhibit limited zero-shot performance on canine-centric tasks: although state-of-the-art closed-source models outperform open-source counterparts, they still struggle with compositional reasoning over subtle posture and interaction cues spread over long horizons. We further observe that generic chain-of-thought prompting provides only modest performance for such long-horizon reasoning. We also conduct human evaluations and checks on a subset to validate the overall dataset quality. Beyond a novel dataset for canine activity analysis, <b>K9-Bench</b> provides a general-purpose dataset construction pipeline that can be adapted to other <em>low-data domains</em> for quantitative analysis.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Benchmark Tasks -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Benchmark Tasks</h2>
+      </div>
+    </div>
+
+    <!-- Detailed Benchmark Tasks -->
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p style="margin-bottom: 1.5rem;">
+            The resulting cue--context mappings motivate various task categories defined as follows:
+          </p>
+          <div class="columns is-multiline">
+            <div class="column is-12">
+              <div class="box" style="border-left: 6px solid #7ED957; background-color: #f0f9eb;">
+                <h4 style="color: #7ED957; margin-bottom: 0.5rem;"><strong>1. Posture Analysis</strong></h4>
+                <p>Recognizes coarse poses such as sitting, standing, and lying, as well as fine-grained cues including ear orientation, head tilt, body lowering, tail position, gaze direction, and posture changes across frames.</p>
+              </div>
+            </div>
+            <div class="column is-12">
+              <div class="box" style="border-left: 6px solid #7ED957; background-color: #f0f9eb;">
+                <h4 style="color: #7ED957; margin-bottom: 0.5rem;"><strong>2. Action Sequence</strong></h4>
+                <p>Requires short-horizon temporal reasoning over ordered action transitions, including gait, posture, movement direction, repeated motion, and general behavioral state.</p>
+              </div>
+            </div>
+            <div class="column is-12">
+              <div class="box" style="border-left: 6px solid #B395FF; background-color: #f5f0ff;">
+                <h4 style="color: #B395FF; margin-bottom: 0.5rem;"><strong>3. Context Analysis</strong></h4>
+                <p>Interprets changes in canine activity and posture in response to environmental stimuli, unfamiliar objects, spatial constraints, human actions, other animals, or object interactions across disjoint temporal windows.</p>
+              </div>
+            </div>
+            <div class="column is-12">
+              <div class="box" style="border-left: 6px solid #B395FF; background-color: #f5f0ff;">
+                <h4 style="color: #B395FF; margin-bottom: 0.5rem;"><strong>4. Cause--Effect Analysis</strong></h4>
+                <p>Links a query event to subsequent changes in body posture, actions, or interaction patterns across multiple video segments, requiring causal reasoning over temporally separated evidence.</p>
+              </div>
+            </div>
+            <div class="column is-12">
+              <div class="box" style="border-left: 6px solid #FF70A6; background-color: #fff0f5;">
+                <h4 style="color: #FF70A6; margin-bottom: 0.5rem;"><strong>5. Interaction Analysis</strong></h4>
+                <p>Interprets dog--human and dog--dog interactions through visual changes in posture and actions associated with coarse non-verbal communication cues including comfort seeking, play invitations, avoidance or attention seeking.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Benchmark Construction</h2>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+
+          <p>We developed a scalable pipeline for curating high-quality canine-centric videos and generating QA pairs.</p>
+
+          <!-- Video Curation -->
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.005rem;">Video Curation</h3>
+          <div class="publication-image" style="text-align: center; margin-bottom: 0.005rem;">
+            <img src="./static/media/Video_Curation_Pipeline.png"
+                 alt="Video Curation Pipeline"
+                 style="width: 100%; height: auto; max-width: 900px;">
+          </div>
+          <p style="margin-top: 0.1rem;">We collected free-living canine videos from YouTube using a semi-automated pipeline involving seed video selection, scalable retrieval via uploader channels and recommendations, followed by rigorous VLM-assisted and human filtering to ensure quality and relevance.</p>
+
+          <!-- QA Generation -->
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.05rem;">Question-Answer Pair Generation</h3>
+          <div class="publication-image" style="text-align: center; margin-bottom: 0.05rem;">
+            <img src="./static/media/QA_W_generation.png"
+                 alt="QA Generation Pipeline"
+                 style="width: 100%; height: auto; max-width: 900px;">
+          </div>
+          <p style="margin-top: 0.1rem;">We generate 5-way MCQ pairs using a two-stage process: correct QA generation guided by a structured knowledge base, followed by plausible distractor generation using detailed video narrations to reduce hallucinations.</p>
+
+          <!-- Bias Mitigation -->
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.3rem;">Bias Mitigation</h3>
+          <div class="publication-image" style="text-align: center; margin-bottom: 0.2rem;">
+            <img src="./static/media/Bias_mitigation_pipeline.png"
+                 alt="Bias Mitigation Pipeline"
+                 style="width: 100%; height: auto; max-width: 900px;">
+          </div>
+          <p style="margin-top: 0.1rem;">To remove biases from VLM-generated data, we apply deaf-blind LLM filtering and speaker information removal, reducing the dataset to 4,744 high-quality QA pairs across 907 videos.</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Dataset Statistics -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h3 class="title is-4">Dataset Statistics</h3>
+        
+        <div class="columns is-centered" style="margin-top: 2rem;">
+          <div class="column is-half">
+            <div class="publication-image">
+              <img src="./static/media/video_vqa_distribution.png"
+                   alt="Video VQA Distribution"
+                   style="width: 80%; height: auto; background-color: white; border-radius: 4px;">
+            </div>
+            <div class="content has-text-centered" style="margin-top: 1rem;">
+              <p>Video VQA Distribution across the dataset.</p>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="publication-image">
+              <img src="./static/media/category_distribution_bar.png"
+                   alt="Category Distribution"
+                   style="width: 80%; height: auto; background-color: white; border-radius: 4px;">
+            </div>
+            <div class="content has-text-centered" style="margin-top: 1rem;">
+              <p>Category distribution in dataset.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Results</h2>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h3 class="title is-4">Main Results</h3>
+        <div class="content has-text-justified">
+          <p>
+            We follow a two-stage criterion for free-form response evaluation using text embeddings. We first compute the cosine similarity between the embeddings of the probed model’s generated response and each candidate option, using text embeddings from the <tt>Qwen3-Embeddings-8B</tt> model. MCQ Accuracy is shown below:
+          </p>
+        </div>
+        <div class="publication-image">
+          <img src="./static/media/main_results.png"
+               alt="Main results showing performance of different MLLMs on K9-Bench"
+               style="width: 100%; height: auto;">
+        </div>
+
+        <h3 class="title is-4" style="margin-top: 2.5rem;">Subjective Evaluations</h3>
+        <div class="content has-text-justified">
+          <p>
+            We also present LLM-as-a-Judge evaluations (<tt>GPT-4o</tt> as judge) in addition to the MCQ-based evals. We evaluate the free-form answers from VLMs across five dimensions: logical consistency, factual correctness, accuracy, conciseness, and overall response quality.
+          </p>
+        </div>
+        <div class="publication-image">
+          <img src="./static/media/main_subjective_results.png"
+               alt="Subjective evaluation results on K9-Bench"
+               style="width: 85%; height: auto;">
+        </div>
+
+        <h3 class="title is-4" style="margin-top: 2.5rem;">Multimodal Inputs (Audio + Video)</h3>
+        <div class="content has-text-justified">
+          <p>
+            We equip <tt>Gemini-2.5 Pro</tt> and <tt>Qwen3-Omni-Flash</tt> with audio inputs to probe the effect of richer multimodal input. Adding audio leads to modest improvements in performance, particularly in Action Sequence analysis.
+          </p>
+        </div>
+        <div class="publication-image">
+          <img src="./static/media/audio_evals.png"
+               alt="Audio + Video evaluation results on K9-Bench"
+               style="width: 100%; height: auto;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Temporal Analysis -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h3 class="title is-4">Temporal Analysis</h3>
+        <div class="columns is-centered" style="margin-top: 2rem;">
+          <div class="column is-half">
+            <div class="publication-image" style="text-align:center;">
+              <img src="./static/media/subsampling_results.png"
+                   alt="Video duration vs accuracy"
+                   style="width: 85%; height: auto; background-color: white; border-radius: 4px; max-width: 520px;">
+            </div>
+            <div class="content has-text-justified" style="margin-top: 1rem; padding: 0 15px;">
+              <p><tt>Gemini-2.5 Pro (A+V)</tt> maintains strong performance across varying video durations, while other models degrade beyond 3–5 minutes.</p>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="publication-image" style="text-align:center;">
+              <img src="./static/media/k9bench_frames_comparison_above_dot.png"
+                   alt="Frame count comparison"
+                   style="width: 85%; height: auto; background-color: white; border-radius: 4px; max-width: 520px;">
+            </div>
+            <div class="content has-text-justified" style="margin-top: 1rem; padding: 0 15px;">
+              <p>Increasing frames from 32 to 64 gives minor gains. Further increasing frames to 128 performance saturates quickly, highlighting the need for better temporal modeling.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{attarde2025k9bench,
+  title={K9-Bench: Evaluating Multimodal LLMs on Canine-Centric Videos},
+  author={Attarde, Khush and Ali, Yusuf and Thukral, Megha and Bhutani, Divye and Ploetz, Thomas and Kira, Zsolt},
+  journal={arXiv preprint arXiv:2506.15635},
+  year={2025},
+  url={https://arxiv.org/abs/2506.15635}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website template adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
