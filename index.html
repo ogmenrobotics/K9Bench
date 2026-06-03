@@ -34,12 +34,12 @@
           
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="#" target="_blank">Khush Attarde</a><sup>*</sup><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://yusufali98.github.io/" target="_blank">Yusuf Ali</a><sup>*</sup><sup>2</sup>,</span>
+              <a href="https://khushattarde.github.io/" target="_blank">Khush Attarde</a><sup>*</sup><sup>1</sup>,</span>
             <span class="author-block">
               <a href="https://meghathukral.github.io/" target="_blank">Megha Thukral</a><sup>2</sup>,
-            </span>
+            </span>            
+            <span class="author-block">
+              <a href="https://yusufali98.github.io/" target="_blank">Yusuf Ali</a><sup>*</sup><sup>2</sup>,</span>
             <span class="author-block">
               <a href="#" target="_blank">Divye Bhutani</a><sup>1</sup>,
             </span>
@@ -99,9 +99,9 @@
   <div class="container is-max-desktop">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+      <div class="column is-five-sixths">
         <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
+        <div class="content has-text-justified" style="max-width: 820px; margin-left: auto; margin-right: auto;">
 <p>
             Multimodal Large Language Models (MLLMs) have demonstrated remarkable zero-shot capabilities across diverse inputs such as images, video, audio, and text. A crucial, yet underexplored, application of these models lies in understanding and modeling animal-centric scenarios, especially domesticated animals. As animals are integral to millions of households, benchmarking next-generation AI models on pet-focused tasks, ranging from recognizing distress signals in pets to enabling responsive robotic companions, is essential for building AI systems that can live and work alongside us. We introduce <b>K9-Bench</b>, a novel benchmark focused on real-world videos of domestic dogs, specifically targeting canine action and interaction understanding via ≈5000 question-answer pairs across 907 videos spanning 5 distinct task categories that test long-form, canine-centric multimodal reasoning in MLLMs. To create this dataset, we propose a scalable, VLM/LLM-powered data generation pipeline that automatically mines canine-centric videos from open web sources and curates QA pairs requiring fine-grained, multi-hop reasoning over canine actions and temporally extended interaction sequences. We further propose bias mitigation strategies designed to eliminate biases introduced by VLMs during dataset curation. Through extensive experimentation, we find that frontier MLLMs exhibit limited zero-shot performance on canine-centric tasks: although state-of-the-art closed-source models outperform open-source counterparts, they still struggle with compositional reasoning over subtle posture and interaction cues spread over long horizons. We further observe that generic chain-of-thought prompting provides only modest performance for such long-horizon reasoning. We also conduct human evaluations and checks on a subset to validate the overall dataset quality. Beyond a novel dataset for canine activity analysis, <b>K9-Bench</b> provides a general-purpose dataset construction pipeline that can be adapted to other <em>low-data domains</em> for quantitative analysis.
           </p>
@@ -124,7 +124,7 @@
       <div class="column is-four-fifths">
         <div class="content has-text-justified">
           <p style="margin-bottom: 1.5rem;">
-            The resulting cue--context mappings motivate various task categories defined as follows:
+            The benchmark is built upon a structured understanding of canine behavior grounded in established ethological frameworks such as DogFACS (Dog Facial Action Coding System) and canine body language research. By mapping observable visual cues (postures, ear positions, tail movements, etc.) with contextual interactions, we defined five core task categories that evaluate fine-grained, long-horizon multimodal reasoning in MLLMs.
           </p>
           <div class="columns is-multiline">
             <div class="column is-12">
