@@ -67,7 +67,118 @@
             NeurIPS 2026
             <span style="color: #3273dc;">(Evaluations & Datasets Track)</span>
           </div>
+<!-- License & Terms of Use -->
+<div class="has-text-centered" style="margin: 1rem 0 1.5rem;">
+  <a href="#" onclick="openLicenseModal(); return false;"
+     style="color: #d32f2f; font-weight: 600; font-size: 0.95rem;">
+    <i class="fas fa-file-contract"></i>
+    License, Terms of Use & Opt-Out Procedure
+  </a>
+</div>
 
+<dialog id="licenseModal"
+        style="width: min(850px, 90vw); max-height: 85vh;
+               border: none; border-radius: 12px; padding: 0;
+               box-shadow: 0 8px 30px rgba(0,0,0,0.25);">
+
+  <div style="padding: 24px 28px;">
+    <div style="display: flex; justify-content: space-between;
+                align-items: center; margin-bottom: 18px;">
+      <h2 style="margin: 0; color: #d32f2f;">
+        License, Terms of Use & Opt-Out Procedure
+      </h2>
+      <button onclick="document.getElementById('licenseModal').close()"
+              aria-label="Close"
+              style="border: none; background: none; font-size: 28px;
+                     cursor: pointer; color: #666;">
+        &times;
+      </button>
+    </div>
+
+    <div id="licenseContent"
+         style="max-height: 60vh; overflow-y: auto;
+                text-align: left; line-height: 1.75;
+                padding-right: 10px;">
+      Loading license...
+    </div>
+  </div>
+</dialog>
+
+<!-- Markdown renderer -->
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+
+<script>
+  async function openLicenseModal() {
+    const modal = document.getElementById("licenseModal");
+    const content = document.getElementById("licenseContent");
+
+    modal.showModal();
+
+    if (content.dataset.loaded === "true") return;
+
+    try {
+      const response = await fetch("./LICENSE.md");
+
+      if (!response.ok) {
+        throw new Error("Could not load LICENSE.md");
+      }
+
+      const markdown = await response.text();
+      content.innerHTML = marked.parse(markdown);
+      content.dataset.loaded = "true";
+
+    } catch (error) {
+      content.textContent =
+        "Unable to load the license. Please try again later.";
+      console.error(error);
+    }
+  }
+</script>
+
+<style>
+  #licenseModal::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  #licenseContent h1,
+  #licenseContent h2,
+  #licenseContent h3 {
+    color: #222;
+    margin-top: 1.3em;
+  }
+
+  #licenseContent p {
+    margin: 0.8em 0;
+  }
+
+  #licenseContent ul,
+  #licenseContent ol {
+    padding-left: 1.8em;
+    margin: 0.8em 0;
+  }
+
+  #licenseContent li {
+    margin-bottom: 0.4em;
+  }
+
+  #licenseContent a {
+    color: #d32f2f;
+    text-decoration: underline;
+  }
+
+  #licenseContent code {
+    background: #f3f3f3;
+    padding: 2px 5px;
+    border-radius: 4px;
+  }
+
+  #licenseContent blockquote {
+    border-left: 3px solid #ddd;
+    margin-left: 0;
+    padding-left: 1em;
+    color: #555;
+  }
+</style>
           <div class="column has-text-centered">
             <div class="publication-links">
               <span class="link-block">
@@ -95,6 +206,7 @@
     </div>
   </div>
 </section>
+
 
 
 <!-- Paper image / Teaser -->
@@ -364,7 +476,7 @@
   </div>
 </section>
 
-<!-- Video Takedown and Opt-Out -->
+<!-- Video Takedown and Opt-Out
 <section class="section" id="takedown">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -401,7 +513,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 
 
